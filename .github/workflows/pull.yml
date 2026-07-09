@@ -4,6 +4,8 @@ on:
     paths:
       - 'job.json'
   workflow_dispatch: {}
+  schedule:
+    - cron: '0 */3 * * *'   # every 3 hours: gradual, throttle-safe backfill
 permissions:
   contents: write
 concurrency:
@@ -12,7 +14,7 @@ concurrency:
 jobs:
   pull:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
+    timeout-minutes: 340
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -30,6 +32,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "no changes"
           else
-            git commit -m "data: pull ${GITHUB_SHA::7} [skip ci]"
+            git commit -m "data: backfill $(date -u +%FT%TZ) [skip ci]"
             git push
           fi

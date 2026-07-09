@@ -1,7 +1,8 @@
 {
-  "instruments": ["xauusd"],
+  "instruments": ["xauusd", "usa30idxusd", "usatechidxusd", "eurusd", "usa500idxusd"],
   "timeframe": "m1",
-  "from": "2025-07-01",
+  "from": "2021-07-01",
   "to": "now",
-  "volumes": true
+  "volumes": true,
+  "maxFilesPerRun": 3
 }
