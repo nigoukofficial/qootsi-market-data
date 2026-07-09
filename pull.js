@@ -9,6 +9,8 @@ const job = JSON.parse(fs.readFileSync('job.json', 'utf8'));
 const tf = job.timeframe || 'm1';
 const vol = job.volumes !== false;
 const outRoot = job.outDir || 'data';
+const batchSize = job.batchSize || 1;              // sequential by default (avoids Dukascopy connect-timeouts)
+const pauseBetweenBatches = job.pauseBetweenBatches != null ? job.pauseBetweenBatches : 250;
 const fromD = new Date(job.from + 'T00:00:00Z');
 const toD = (job.to && job.to !== 'now') ? new Date(job.to + 'T00:00:00Z') : new Date();
 
@@ -25,15 +27,28 @@ async function probe(url) {
   }
 }
 
+async function pull(inst, from, to) {
+  return await getHistoricalRates({
+    instrument: inst,
+    dates: { from, to },
+    timeframe: tf,
+    format: 'array',
+    volumes: vol,
+    retries: 8,
+    pauseBetweenRetries: 1500,
+    batchSize,
+    pauseBetweenBatches,
+    useCache: false
+  });
+}
+
 (async () => {
   const manifest = {
     generatedAt: new Date().toISOString(),
     runnerNow: new Date().toISOString(),
     resolved: { from: fromD.toISOString(), to: toD.toISOString() },
-    timeframe: tf, volumes: vol, node: process.version, preflight: {}, instruments: {}
+    timeframe: tf, volumes: vol, node: process.version, batchSize, preflight: {}, instruments: {}
   };
-  // Preflight: can the runner reach Dukascopy at all?
-  manifest.preflight.root = await probe('https://datafeed.dukascopy.com/');
   manifest.preflight.bi5 = await probe('https://datafeed.dukascopy.com/datafeed/XAUUSD/2023/05/15/10h_ticks.bi5');
 
   for (const inst of job.instruments) {
@@ -47,18 +62,7 @@ async function probe(url) {
       if (cFrom >= cTo) continue;
       let rows;
       try {
-        rows = await getHistoricalRates({
-          instrument: inst,
-          dates: { from: cFrom, to: cTo },
-          timeframe: tf,
-          format: 'array',
-          volumes: vol,
-          retries: 5,
-          pauseBetweenRetries: 1200,
-          batchSize: 10,
-          pauseBetweenBatches: 500,
-          useCache: false
-        });
+        rows = await pull(inst, cFrom, cTo);
       } catch (e) {
         console.error('FAIL ' + inst + ' ' + y + ': ' + causeOf(e));
         m.errors.push(y + ':' + causeOf(e));
