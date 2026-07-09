@@ -1,7 +1,7 @@
 {
   "instruments": ["xauusd"],
   "timeframe": "m1",
-  "from": "2023-06-01",
-  "to": "2023-06-02",
+  "from": "2023-06-14",
+  "to": "2023-06-16",
   "volumes": true
 }
