@@ -10,18 +10,30 @@ const tf = job.timeframe || 'm1';
 const vol = job.volumes !== false;
 const outRoot = job.outDir || 'data';
 const batchSize = job.batchSize || 1;
-const pauseBetweenBatches = job.pauseBetweenBatches != null ? job.pauseBetweenBatches : 250;
+const pauseBetweenBatches = job.pauseBetweenBatches != null ? job.pauseBetweenBatches : 400;
 const fromD = new Date(job.from + 'T00:00:00Z');
 const toD = (job.to && job.to !== 'now') ? new Date(job.to + 'T00:00:00Z') : new Date();
 
 const iso = (ts) => new Date(ts).toISOString().replace('.000Z', 'Z');
 const causeOf = (e) => (e && e.cause && (e.cause.code || e.cause.message)) || (e && e.message) || String(e);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function pull(inst, from, to) {
   return await getHistoricalRates({
     instrument: inst, dates: { from, to }, timeframe: tf, format: 'array', volumes: vol,
-    retries: 8, pauseBetweenRetries: 1500, batchSize, pauseBetweenBatches, useCache: false
+    retries: 10, pauseBetweenRetries: 2000, retryOnEmpty: true,
+    batchSize, pauseBetweenBatches, useCache: false
   });
+}
+
+// Year-level guard: if a year comes back empty, wait and retry the whole year a few times.
+async function pullYear(inst, from, to) {
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    const rows = await pull(inst, from, to);
+    if (rows && rows.length) return rows;
+    await sleep(3000 * attempt);
+  }
+  return [];
 }
 
 (async () => {
@@ -41,7 +53,7 @@ async function pull(inst, from, to) {
       if (cFrom >= cTo) continue;
       let rows;
       try {
-        rows = await pull(inst, cFrom, cTo);
+        rows = await pullYear(inst, cFrom, cTo);
       } catch (e) {
         console.error('FAIL ' + inst + ' ' + y + ': ' + causeOf(e));
         m.errors.push(y + ':' + causeOf(e));
@@ -60,9 +72,7 @@ async function pull(inst, from, to) {
       const f1 = iso(rows[rows.length - 1][0]);
       if (!m.first || f0 < m.first) m.first = f0;
       if (!m.last || f1 > m.last) m.last = f1;
-      if (!m.sample) {
-        m.sample = { header: header, head: [lines[1], lines[2]], tail: lines[lines.length - 1] };
-      }
+      if (!m.sample) m.sample = { header: header, head: [lines[1], lines[2]], tail: lines[lines.length - 1] };
       console.log(inst + ' ' + y + ': ' + rows.length + ' rows -> ' + path.basename(file));
     }
   }
