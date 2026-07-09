@@ -15,9 +15,14 @@ const toD = (job.to && job.to !== 'now') ? new Date(job.to + 'T00:00:00Z') : new
 const iso = (ts) => new Date(ts).toISOString().replace('.000Z', 'Z');
 
 (async () => {
-  const manifest = { generatedAt: new Date().toISOString(), timeframe: tf, volumes: vol, instruments: {} };
+  const manifest = {
+    generatedAt: new Date().toISOString(),
+    runnerNow: new Date().toISOString(),
+    resolved: { from: fromD.toISOString(), to: toD.toISOString() },
+    timeframe: tf, volumes: vol, instruments: {}
+  };
   for (const inst of job.instruments) {
-    const m = { files: [], rows: 0, first: null, last: null };
+    const m = { files: [], rows: 0, first: null, last: null, errors: [] };
     manifest.instruments[inst] = m;
     const dir = path.join(outRoot, inst);
     fs.mkdirSync(dir, { recursive: true });
@@ -41,9 +46,10 @@ const iso = (ts) => new Date(ts).toISOString().replace('.000Z', 'Z');
         });
       } catch (e) {
         console.error('FAIL ' + inst + ' ' + y + ': ' + e.message);
+        m.errors.push(y + ':' + e.message);
         continue;
       }
-      if (!rows || !rows.length) { console.log('empty ' + inst + ' ' + y); continue; }
+      if (!rows || !rows.length) { console.log('empty ' + inst + ' ' + y); m.errors.push(y + ':empty'); continue; }
       const header = vol ? 'dt,o,h,l,c,v' : 'dt,o,h,l,c';
       const lines = [header];
       for (const r of rows) lines.push(iso(r[0]) + ',' + r.slice(1).join(','));
