@@ -1,23 +1,112 @@
 {
-  "generatedAt": "2026-07-09T03:39:35.665Z",
+  "generatedAt": "2026-07-09T04:12:48.543Z",
   "resolved": {
-    "from": "2023-06-12T00:00:00.000Z",
-    "to": "2023-06-14T00:00:00.000Z"
+    "from": "2021-07-01T00:00:00.000Z",
+    "to": "2026-07-09T04:12:48.543Z"
   },
   "timeframe": "m1",
   "volumes": true,
   "node": "v20.20.2",
-  "batchSize": 1,
+  "batchSize": 6,
+  "maxFilesPerRun": 3,
   "instruments": {
     "xauusd": {
+      "files": [
+        "xauusd-m1-2026.csv.gz",
+        "xauusd-m1-2025.csv.gz",
+        "xauusd-m1-2024.csv.gz",
+        "xauusd-m1-2023.csv.gz(exists)"
+      ],
+      "rows": 477982,
+      "first": "2024-01-01T23:00:00Z",
+      "last": "2026-07-09T03:59:00Z",
+      "sample": {
+        "header": "dt,o,h,l,c,v",
+        "head": [
+          "2026-01-01T23:00:00Z,4323.698,4332.848,4323.698,4328.198,0.039409998804330826",
+          "2026-01-01T23:01:00Z,4328.198,4331.998,4328.098,4328.898,0.027459999546408653"
+        ],
+        "tail": "2026-01-30T21:59:00Z,4889.635,4895.118,4889.485,4895.118,0.006029999814927578"
+      },
+      "errors": [
+        "2026-2:UND_ERR_SOCKET",
+        "2026-4:UND_ERR_CONNECT_TIMEOUT",
+        "2025-3:UND_ERR_CONNECT_TIMEOUT",
+        "2025-5:UND_ERR_CONNECT_TIMEOUT",
+        "2025-6:UND_ERR_CONNECT_TIMEOUT",
+        "2024-3:UND_ERR_CONNECT_TIMEOUT",
+        "2024-4:UND_ERR_SOCKET",
+        "2024-5:UND_ERR_SOCKET",
+        "2024-6:UND_ERR_CONNECT_TIMEOUT",
+        "2024-7:UND_ERR_CONNECT_TIMEOUT",
+        "2024-8:UND_ERR_SOCKET",
+        "2024-10:UND_ERR_CONNECT_TIMEOUT",
+        "2024-11:UND_ERR_SOCKET",
+        "2024-12:UND_ERR_CONNECT_TIMEOUT",
+        "2022:deferred(cap)",
+        "2021:deferred(cap)"
+      ]
+    },
+    "usa30idxusd": {
       "files": [],
       "rows": 0,
       "first": null,
       "last": null,
       "sample": null,
       "errors": [
-        "2023:UND_ERR_SOCKET"
+        "2026:deferred(cap)",
+        "2025:deferred(cap)",
+        "2024:deferred(cap)",
+        "2023:deferred(cap)",
+        "2022:deferred(cap)",
+        "2021:deferred(cap)"
+      ]
+    },
+    "usatechidxusd": {
+      "files": [],
+      "rows": 0,
+      "first": null,
+      "last": null,
+      "sample": null,
+      "errors": [
+        "2026:deferred(cap)",
+        "2025:deferred(cap)",
+        "2024:deferred(cap)",
+        "2023:deferred(cap)",
+        "2022:deferred(cap)",
+        "2021:deferred(cap)"
+      ]
+    },
+    "eurusd": {
+      "files": [],
+      "rows": 0,
+      "first": null,
+      "last": null,
+      "sample": null,
+      "errors": [
+        "2026:deferred(cap)",
+        "2025:deferred(cap)",
+        "2024:deferred(cap)",
+        "2023:deferred(cap)",
+        "2022:deferred(cap)",
+        "2021:deferred(cap)"
+      ]
+    },
+    "usa500idxusd": {
+      "files": [],
+      "rows": 0,
+      "first": null,
+      "last": null,
+      "sample": null,
+      "errors": [
+        "2026:deferred(cap)",
+        "2025:deferred(cap)",
+        "2024:deferred(cap)",
+        "2023:deferred(cap)",
+        "2022:deferred(cap)",
+        "2021:deferred(cap)"
       ]
     }
-  }
+  },
+  "filesWrittenThisRun": 3
 }
