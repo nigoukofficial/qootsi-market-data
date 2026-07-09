@@ -1,13 +1,14 @@
 // Dukascopy puller for Q Trade / qootsi.com.
 // Reads job.json, pulls OHLC+volume via dukascopy-node, writes gzipped yearly
-// CSVs under data/<instrument>/, plus manifest.json.
+// CSVs under data/<instrument>/<instrument>-<tf>-<year>.csv.gz + manifest.json.
 //
-// Design for gradual, throttle-safe backfill:
-//  - instruments processed in job.json order (PRIORITY: gold first, then indices/fx)
-//  - years newest-first (most useful data lands first)
-//  - resumable: skips year files that already exist
-//  - bounded: writes at most maxFilesPerRun new year-files per run, then stops
-//  - robust: month-chunked, retryOnEmpty, per-chunk retry with backoff (rides Dukascopy throttling)
+// Month-aware resumability (self-healing under Dukascopy throttling):
+//  - a month inside a year file is considered DONE only if it has >= MIN_ROWS rows
+//  - the CURRENT month is always re-pulled (kept fresh)
+//  - missing / partial / failed months are re-pulled and MERGED into the year file
+//  - bounded: at most maxMonthsPerRun NEW months per run (gentle on Dukascopy)
+//  - instruments processed in job.json order (PRIORITY: gold first)
+//  - years newest-first
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
@@ -19,14 +20,31 @@ const vol = job.volumes !== false;
 const outRoot = job.outDir || 'data';
 const batchSize = job.batchSize || 6;
 const pauseBetweenBatches = job.pauseBetweenBatches != null ? job.pauseBetweenBatches : 500;
-const maxFilesPerRun = job.maxFilesPerRun || 3;
+const maxMonthsPerRun = job.maxMonthsPerRun || 10;
+const MIN_ROWS = job.minRowsPerMonth || 5000;   // a full m1 trading month is ~30k; <5k = partial
 const fromD = new Date(job.from + 'T00:00:00Z');
 const toD = (job.to && job.to !== 'now') ? new Date(job.to + 'T00:00:00Z') : new Date();
 
 const iso = (ts) => new Date(ts).toISOString().replace('.000Z', 'Z');
 const causeOf = (e) => (e && e.cause && (e.cause.code || e.cause.message)) || (e && e.message) || String(e);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const monthStart = (y, mo) => new Date(Date.UTC(y, mo, 1));
+const ym = (dt) => dt.slice(0, 7);                // 'YYYY-MM' from ISO string
+const curYM = iso(toD.getTime()).slice(0, 7);
+const header = vol ? 'dt,o,h,l,c,v' : 'dt,o,h,l,c';
+
+function readExisting(file) {
+  const byMonthCount = {}; const rowsByDt = {};
+  if (!fs.existsSync(file)) return { byMonthCount, rowsByDt };
+  const txt = zlib.gunzipSync(fs.readFileSync(file)).toString('utf8');
+  for (const line of txt.split('\n')) {
+    if (!line || line[0] === 'd') continue;        // skip header/empty
+    const dt = line.slice(0, line.indexOf(','));
+    if (!dt) continue;
+    rowsByDt[dt] = line;
+    const k = ym(dt); byMonthCount[k] = (byMonthCount[k] || 0) + 1;
+  }
+  return { byMonthCount, rowsByDt };
+}
 
 async function pullChunk(inst, from, to) {
   let lastErr = 'empty';
@@ -49,46 +67,50 @@ async function pullChunk(inst, from, to) {
   const manifest = {
     generatedAt: new Date().toISOString(),
     resolved: { from: fromD.toISOString(), to: toD.toISOString() },
-    timeframe: tf, volumes: vol, node: process.version, batchSize, maxFilesPerRun, instruments: {}
+    timeframe: tf, volumes: vol, node: process.version, batchSize, maxMonthsPerRun,
+    instruments: {}
   };
-  const header = vol ? 'dt,o,h,l,c,v' : 'dt,o,h,l,c';
-  let filesWritten = 0;
+  let monthsPulled = 0;
   for (const inst of job.instruments) {
-    const m = { files: [], rows: 0, first: null, last: null, sample: null, errors: [] };
+    const m = { yearsComplete: [], monthsAdded: [], rows: 0, first: null, last: null, sample: null, errors: [] };
     manifest.instruments[inst] = m;
     const dir = path.join(outRoot, inst);
     fs.mkdirSync(dir, { recursive: true });
-    for (let y = toD.getUTCFullYear(); y >= fromD.getUTCFullYear(); y--) {   // newest first
+    for (let y = toD.getUTCFullYear(); y >= fromD.getUTCFullYear(); y--) {
       const file = path.join(dir, inst + '-' + tf + '-' + y + '.csv.gz');
-      if (fs.existsSync(file)) { m.files.push(path.basename(file) + '(exists)'); continue; }
-      if (filesWritten >= maxFilesPerRun) { m.errors.push(y + ':deferred(cap)'); continue; }
-      const yearLines = [header];
-      let yearRows = 0, yFirst = null, yLast = null;
+      const { byMonthCount, rowsByDt } = readExisting(file);
+      let addedThisYear = 0;
       for (let mo = 0; mo < 12; mo++) {
-        const cFrom = new Date(Math.max(fromD.getTime(), monthStart(y, mo).getTime()));
-        const cTo = new Date(Math.min(toD.getTime(), monthStart(y, mo + 1).getTime()));
+        const cFrom = new Date(Math.max(fromD.getTime(), Date.UTC(y, mo, 1)));
+        const cTo = new Date(Math.min(toD.getTime(), Date.UTC(y, mo + 1, 1)));
         if (cFrom >= cTo) continue;
+        const key = y + '-' + String(mo + 1).padStart(2, '0');
+        const done = (byMonthCount[key] || 0) >= MIN_ROWS && key !== curYM;
+        if (done) continue;
+        if (monthsPulled >= maxMonthsPerRun) { m.errors.push(key + ':deferred(cap)'); continue; }
         let rows;
         try { rows = await pullChunk(inst, cFrom, cTo); }
-        catch (e) { m.errors.push(y + '-' + (mo + 1) + ':' + e.message); continue; }
-        for (const r of rows) yearLines.push(iso(r[0]) + ',' + r.slice(1).join(','));
-        yearRows += rows.length;
-        const f0 = iso(rows[0][0]); const f1 = iso(rows[rows.length - 1][0]);
-        if (!yFirst || f0 < yFirst) yFirst = f0;
-        if (!yLast || f1 > yLast) yLast = f1;
-        if (!m.sample) m.sample = { header: header, head: [yearLines[1], yearLines[2]], tail: yearLines[yearLines.length - 1] };
+        catch (e) { m.errors.push(key + ':' + e.message); continue; }
+        for (const r of rows) { const line = iso(r[0]) + ',' + r.slice(1).join(','); rowsByDt[line.slice(0, line.indexOf(','))] = line; }
+        monthsPulled++; addedThisYear++; m.monthsAdded.push(key);
+        if (!m.sample) { const ex = rows[0]; m.sample = { header: header, head: [iso(rows[0][0]) + ',' + rows[0].slice(1).join(','), iso(rows[1][0]) + ',' + rows[1].slice(1).join(',')], tail: iso(rows[rows.length - 1][0]) + ',' + rows[rows.length - 1].slice(1).join(',') }; }
       }
-      if (yearRows === 0) { m.errors.push(y + ':empty-year'); continue; }
-      fs.writeFileSync(file, zlib.gzipSync(Buffer.from(yearLines.join('\n') + '\n'), { level: 9 }));
-      filesWritten++;
-      m.files.push(path.basename(file));
-      m.rows += yearRows;
-      if (!m.first || yFirst < m.first) m.first = yFirst;
-      if (!m.last || yLast > m.last) m.last = yLast;
-      console.log(inst + ' ' + y + ': ' + yearRows + ' rows (file ' + filesWritten + '/' + maxFilesPerRun + ')');
+      const dts = Object.keys(rowsByDt).sort();
+      if (dts.length === 0) continue;
+      if (addedThisYear > 0) {
+        const out = [header].concat(dts.map((k) => rowsByDt[k])).join('\n') + '\n';
+        fs.writeFileSync(file, zlib.gzipSync(Buffer.from(out), { level: 9 }));
+        console.log(inst + ' ' + y + ': +' + addedThisYear + ' months, total ' + dts.length + ' rows');
+      }
+      // report coverage
+      const monthsPresent = new Set(dts.map((d) => ym(d))).size;
+      if (monthsPresent >= 11) m.yearsComplete.push(y);
+      m.rows += dts.length;
+      if (!m.first || dts[0] < m.first) m.first = dts[0];
+      if (!m.last || dts[dts.length - 1] > m.last) m.last = dts[dts.length - 1];
     }
   }
-  manifest.filesWrittenThisRun = filesWritten;
+  manifest.monthsPulledThisRun = monthsPulled;
   fs.writeFileSync('manifest.json', JSON.stringify(manifest, null, 2));
-  console.log('DONE (' + filesWritten + ' new files)');
+  console.log('DONE (' + monthsPulled + ' months pulled)');
 })().catch((e) => { console.error(e); process.exit(1); });
