@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-09T03:27:37.457Z",
-  "runnerNow": "2026-07-09T03:27:37.457Z",
+  "generatedAt": "2026-07-09T03:30:53.617Z",
+  "runnerNow": "2026-07-09T03:30:53.617Z",
   "resolved": {
-    "from": "2023-06-01T00:00:00.000Z",
-    "to": "2023-06-02T00:00:00.000Z"
+    "from": "2023-06-14T00:00:00.000Z",
+    "to": "2023-06-16T00:00:00.000Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -27,7 +27,7 @@
       "first": null,
       "last": null,
       "errors": [
-        "2023:empty"
+        "2023:UND_ERR_CONNECT_TIMEOUT"
       ]
     }
   }
