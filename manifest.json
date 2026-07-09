@@ -1,5 +1,10 @@
 {
-  "generatedAt": "2026-07-09T03:20:37.576Z",
+  "generatedAt": "2026-07-09T03:24:15.476Z",
+  "runnerNow": "2026-07-09T03:24:15.476Z",
+  "resolved": {
+    "from": "2023-06-01T00:00:00.000Z",
+    "to": "2023-06-15T00:00:00.000Z"
+  },
   "timeframe": "m1",
   "volumes": true,
   "instruments": {
@@ -7,7 +12,10 @@
       "files": [],
       "rows": 0,
       "first": null,
-      "last": null
+      "last": null,
+      "errors": [
+        "2023:fetch failed"
+      ]
     }
   }
 }
