@@ -1,30 +1,23 @@
 {
-  "generatedAt": "2026-07-09T03:33:01.336Z",
-  "runnerNow": "2026-07-09T03:33:01.336Z",
+  "generatedAt": "2026-07-09T03:35:16.893Z",
   "resolved": {
-    "from": "2023-06-14T00:00:00.000Z",
-    "to": "2023-06-15T00:00:00.000Z"
+    "from": "2023-06-13T00:00:00.000Z",
+    "to": "2023-06-14T00:00:00.000Z"
   },
   "timeframe": "m1",
   "volumes": true,
   "node": "v20.20.2",
   "batchSize": 1,
-  "preflight": {
-    "bi5": {
-      "url": "https://datafeed.dukascopy.com/datafeed/XAUUSD/2023/05/15/10h_ticks.bi5",
-      "status": 200,
-      "bytes": 21773
-    }
-  },
   "instruments": {
     "xauusd": {
-      "files": [
-        "xauusd-m1-2023.csv.gz"
-      ],
-      "rows": 1380,
-      "first": "2023-06-14T00:00:00Z",
-      "last": "2023-06-14T23:59:00Z",
-      "errors": []
+      "files": [],
+      "rows": 0,
+      "first": null,
+      "last": null,
+      "sample": null,
+      "errors": [
+        "2023:empty"
+      ]
     }
   }
 }
