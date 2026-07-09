@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-09T03:35:16.893Z",
+  "generatedAt": "2026-07-09T03:39:35.665Z",
   "resolved": {
-    "from": "2023-06-13T00:00:00.000Z",
+    "from": "2023-06-12T00:00:00.000Z",
     "to": "2023-06-14T00:00:00.000Z"
   },
   "timeframe": "m1",
@@ -16,7 +16,7 @@
       "last": null,
       "sample": null,
       "errors": [
-        "2023:empty"
+        "2023:UND_ERR_SOCKET"
       ]
     }
   }
