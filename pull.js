@@ -13,14 +13,29 @@ const fromD = new Date(job.from + 'T00:00:00Z');
 const toD = (job.to && job.to !== 'now') ? new Date(job.to + 'T00:00:00Z') : new Date();
 
 const iso = (ts) => new Date(ts).toISOString().replace('.000Z', 'Z');
+const causeOf = (e) => (e && e.cause && (e.cause.code || e.cause.message)) || (e && e.message) || String(e);
+
+async function probe(url) {
+  try {
+    const r = await fetch(url);
+    const b = await r.arrayBuffer();
+    return { url, status: r.status, bytes: b.byteLength };
+  } catch (e) {
+    return { url, error: e.message, cause: causeOf(e) };
+  }
+}
 
 (async () => {
   const manifest = {
     generatedAt: new Date().toISOString(),
     runnerNow: new Date().toISOString(),
     resolved: { from: fromD.toISOString(), to: toD.toISOString() },
-    timeframe: tf, volumes: vol, instruments: {}
+    timeframe: tf, volumes: vol, node: process.version, preflight: {}, instruments: {}
   };
+  // Preflight: can the runner reach Dukascopy at all?
+  manifest.preflight.root = await probe('https://datafeed.dukascopy.com/');
+  manifest.preflight.bi5 = await probe('https://datafeed.dukascopy.com/datafeed/XAUUSD/2023/05/15/10h_ticks.bi5');
+
   for (const inst of job.instruments) {
     const m = { files: [], rows: 0, first: null, last: null, errors: [] };
     manifest.instruments[inst] = m;
@@ -39,14 +54,14 @@ const iso = (ts) => new Date(ts).toISOString().replace('.000Z', 'Z');
           format: 'array',
           volumes: vol,
           retries: 5,
-          pauseBetweenRetries: 800,
-          batchSize: 20,
-          pauseBetweenBatches: 400,
+          pauseBetweenRetries: 1200,
+          batchSize: 10,
+          pauseBetweenBatches: 500,
           useCache: false
         });
       } catch (e) {
-        console.error('FAIL ' + inst + ' ' + y + ': ' + e.message);
-        m.errors.push(y + ':' + e.message);
+        console.error('FAIL ' + inst + ' ' + y + ': ' + causeOf(e));
+        m.errors.push(y + ':' + causeOf(e));
         continue;
       }
       if (!rows || !rows.length) { console.log('empty ' + inst + ' ' + y); m.errors.push(y + ':empty'); continue; }
