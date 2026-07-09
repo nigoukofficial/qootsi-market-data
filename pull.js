@@ -9,7 +9,7 @@ const job = JSON.parse(fs.readFileSync('job.json', 'utf8'));
 const tf = job.timeframe || 'm1';
 const vol = job.volumes !== false;
 const outRoot = job.outDir || 'data';
-const batchSize = job.batchSize || 1;              // sequential by default (avoids Dukascopy connect-timeouts)
+const batchSize = job.batchSize || 1;
 const pauseBetweenBatches = job.pauseBetweenBatches != null ? job.pauseBetweenBatches : 250;
 const fromD = new Date(job.from + 'T00:00:00Z');
 const toD = (job.to && job.to !== 'now') ? new Date(job.to + 'T00:00:00Z') : new Date();
@@ -17,42 +17,21 @@ const toD = (job.to && job.to !== 'now') ? new Date(job.to + 'T00:00:00Z') : new
 const iso = (ts) => new Date(ts).toISOString().replace('.000Z', 'Z');
 const causeOf = (e) => (e && e.cause && (e.cause.code || e.cause.message)) || (e && e.message) || String(e);
 
-async function probe(url) {
-  try {
-    const r = await fetch(url);
-    const b = await r.arrayBuffer();
-    return { url, status: r.status, bytes: b.byteLength };
-  } catch (e) {
-    return { url, error: e.message, cause: causeOf(e) };
-  }
-}
-
 async function pull(inst, from, to) {
   return await getHistoricalRates({
-    instrument: inst,
-    dates: { from, to },
-    timeframe: tf,
-    format: 'array',
-    volumes: vol,
-    retries: 8,
-    pauseBetweenRetries: 1500,
-    batchSize,
-    pauseBetweenBatches,
-    useCache: false
+    instrument: inst, dates: { from, to }, timeframe: tf, format: 'array', volumes: vol,
+    retries: 8, pauseBetweenRetries: 1500, batchSize, pauseBetweenBatches, useCache: false
   });
 }
 
 (async () => {
   const manifest = {
     generatedAt: new Date().toISOString(),
-    runnerNow: new Date().toISOString(),
     resolved: { from: fromD.toISOString(), to: toD.toISOString() },
-    timeframe: tf, volumes: vol, node: process.version, batchSize, preflight: {}, instruments: {}
+    timeframe: tf, volumes: vol, node: process.version, batchSize, instruments: {}
   };
-  manifest.preflight.bi5 = await probe('https://datafeed.dukascopy.com/datafeed/XAUUSD/2023/05/15/10h_ticks.bi5');
-
   for (const inst of job.instruments) {
-    const m = { files: [], rows: 0, first: null, last: null, errors: [] };
+    const m = { files: [], rows: 0, first: null, last: null, sample: null, errors: [] };
     manifest.instruments[inst] = m;
     const dir = path.join(outRoot, inst);
     fs.mkdirSync(dir, { recursive: true });
@@ -68,7 +47,7 @@ async function pull(inst, from, to) {
         m.errors.push(y + ':' + causeOf(e));
         continue;
       }
-      if (!rows || !rows.length) { console.log('empty ' + inst + ' ' + y); m.errors.push(y + ':empty'); continue; }
+      if (!rows || !rows.length) { m.errors.push(y + ':empty'); continue; }
       const header = vol ? 'dt,o,h,l,c,v' : 'dt,o,h,l,c';
       const lines = [header];
       for (const r of rows) lines.push(iso(r[0]) + ',' + r.slice(1).join(','));
@@ -81,6 +60,9 @@ async function pull(inst, from, to) {
       const f1 = iso(rows[rows.length - 1][0]);
       if (!m.first || f0 < m.first) m.first = f0;
       if (!m.last || f1 > m.last) m.last = f1;
+      if (!m.sample) {
+        m.sample = { header: header, head: [lines[1], lines[2]], tail: lines[lines.length - 1] };
+      }
       console.log(inst + ' ' + y + ': ' + rows.length + ' rows -> ' + path.basename(file));
     }
   }
