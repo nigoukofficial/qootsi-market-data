@@ -1,0 +1,35 @@
+name: pull-dukascopy
+on:
+  push:
+    paths:
+      - 'job.json'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: pull
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dukascopy-node
+        run: npm i dukascopy-node@latest
+      - name: Pull data
+        run: node pull.js
+      - name: Commit data
+        run: |
+          git config user.name "qootsi-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data manifest.json
+          if git diff --cached --quiet; then
+            echo "no changes"
+          else
+            git commit -m "data: pull ${GITHUB_SHA::7} [skip ci]"
+            git push
+          fi
