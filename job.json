@@ -1,0 +1,7 @@
+{
+  "instruments": ["xauusd"],
+  "timeframe": "m1",
+  "from": "2026-07-01",
+  "to": "now",
+  "volumes": true
+}
