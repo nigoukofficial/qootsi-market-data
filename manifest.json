@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-07-09T03:20:37.576Z",
+  "timeframe": "m1",
+  "volumes": true,
+  "instruments": {
+    "xauusd": {
+      "files": [],
+      "rows": 0,
+      "first": null,
+      "last": null
+    }
+  }
+}
