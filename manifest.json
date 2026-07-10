@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-10T17:02:57.129Z",
+  "generatedAt": "2026-07-10T19:43:04.718Z",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-07-10T17:02:57.129Z"
+    "to": "2026-07-10T19:43:04.718Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -27,52 +27,44 @@
       ]
     },
     "usa30idxusd": {
-      "yearsComplete": [],
-      "monthsAdded": [
-        "2025-11",
-        "2024-04",
-        "2024-08",
-        "2023-03",
-        "2023-04",
-        "2023-07",
-        "2023-10",
-        "2022-01",
-        "2022-06",
-        "2022-09"
+      "yearsComplete": [
+        2024
       ],
-      "rows": 919101,
+      "monthsAdded": [
+        "2024-11",
+        "2023-05",
+        "2023-06",
+        "2023-11",
+        "2023-12",
+        "2022-02",
+        "2022-05",
+        "2022-07",
+        "2022-08",
+        "2022-10"
+      ],
+      "rows": 1203882,
       "first": "2022-01-02T23:00:00Z",
       "last": "2026-07-10T08:59:00Z",
       "sample": {
         "header": "dt,o,h,l,c,v",
         "head": [
-          "2025-11-02T23:00:00Z,47599.575,47619.487,47590.515,47611.575,0.0009640000062063336",
-          "2025-11-02T23:01:00Z,47611.527,47628.515,47611.527,47628.515,0.00046999999904073775"
+          "2024-11-01T00:00:00Z,41779.627,41780.615,41748.663,41752.603,0.007600000128149986",
+          "2024-11-01T00:01:00Z,41751.899,41757.687,41750.151,41753.163,0.0048500001430511475"
         ],
-        "tail": "2025-11-30T23:59:00Z,47664.499,47664.699,47659.199,47661.451,0.00044100001105107367"
+        "tail": "2024-11-29T18:13:00Z,44942.251,44950.999,44941.263,44944.715,0.007199999876320362"
       },
       "errors": [
         "2026-07:UND_ERR_CONNECT_TIMEOUT",
-        "2025-02:UND_ERR_SOCKET",
+        "2025-02:UND_ERR_CONNECT_TIMEOUT",
         "2025-03:UND_ERR_CONNECT_TIMEOUT",
-        "2025-04:ETIMEDOUT",
-        "2024-11:UND_ERR_CONNECT_TIMEOUT",
+        "2025-04:UND_ERR_SOCKET",
         "2024-12:UND_ERR_SOCKET",
         "2023-01:UND_ERR_CONNECT_TIMEOUT",
         "2023-02:UND_ERR_CONNECT_TIMEOUT",
-        "2023-05:UND_ERR_CONNECT_TIMEOUT",
-        "2023-06:UND_ERR_CONNECT_TIMEOUT",
-        "2023-08:UND_ERR_SOCKET",
-        "2023-09:UND_ERR_SOCKET",
-        "2023-11:UND_ERR_CONNECT_TIMEOUT",
-        "2023-12:UND_ERR_SOCKET",
-        "2022-02:UND_ERR_CONNECT_TIMEOUT",
-        "2022-03:UND_ERR_SOCKET",
-        "2022-04:ECONNRESET",
-        "2022-05:UND_ERR_SOCKET",
-        "2022-07:ECONNRESET",
-        "2022-08:UND_ERR_CONNECT_TIMEOUT",
-        "2022-10:deferred(cap)",
+        "2023-08:UND_ERR_CONNECT_TIMEOUT",
+        "2023-09:ECONNRESET",
+        "2022-03:UND_ERR_CONNECT_TIMEOUT",
+        "2022-04:ETIMEDOUT",
         "2022-11:deferred(cap)",
         "2022-12:deferred(cap)",
         "2021-07:deferred(cap)",
