@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-10T19:43:04.718Z",
+  "generatedAt": "2026-07-10T22:11:28.688Z",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-07-10T19:43:04.718Z"
+    "to": "2026-07-10T22:11:28.688Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -23,70 +23,69 @@
       "last": "2026-07-10T13:59:00Z",
       "sample": null,
       "errors": [
-        "2026-07:UND_ERR_CONNECT_TIMEOUT"
+        "2026-07:UND_ERR_SOCKET"
       ]
     },
     "usa30idxusd": {
       "yearsComplete": [
+        2025,
         2024
       ],
       "monthsAdded": [
-        "2024-11",
-        "2023-05",
-        "2023-06",
-        "2023-11",
-        "2023-12",
-        "2022-02",
-        "2022-05",
-        "2022-07",
-        "2022-08",
-        "2022-10"
+        "2025-03",
+        "2025-04",
+        "2023-01",
+        "2023-08",
+        "2022-04",
+        "2021-08",
+        "2021-09",
+        "2021-10",
+        "2021-12"
       ],
-      "rows": 1203882,
-      "first": "2022-01-02T23:00:00Z",
+      "rows": 1461012,
+      "first": "2021-08-01T22:00:00Z",
       "last": "2026-07-10T08:59:00Z",
       "sample": {
         "header": "dt,o,h,l,c,v",
         "head": [
-          "2024-11-01T00:00:00Z,41779.627,41780.615,41748.663,41752.603,0.007600000128149986",
-          "2024-11-01T00:01:00Z,41751.899,41757.687,41750.151,41753.163,0.0048500001430511475"
+          "2025-03-02T23:00:00Z,43821.299,43830.739,43770.215,43803.275,0.013799999840557575",
+          "2025-03-02T23:01:00Z,43805.763,43841.299,43803.299,43835.251,0.006599999964237213"
         ],
-        "tail": "2024-11-29T18:13:00Z,44942.251,44950.999,44941.263,44944.715,0.007199999876320362"
+        "tail": "2025-03-31T23:59:00Z,41915.515,41917.299,41908.527,41916.063,0.0040799998678267"
       },
       "errors": [
         "2026-07:UND_ERR_CONNECT_TIMEOUT",
-        "2025-02:UND_ERR_CONNECT_TIMEOUT",
-        "2025-03:UND_ERR_CONNECT_TIMEOUT",
-        "2025-04:UND_ERR_SOCKET",
-        "2024-12:UND_ERR_SOCKET",
-        "2023-01:UND_ERR_CONNECT_TIMEOUT",
+        "2025-02:UND_ERR_SOCKET",
+        "2024-12:ETIMEDOUT",
         "2023-02:UND_ERR_CONNECT_TIMEOUT",
-        "2023-08:UND_ERR_CONNECT_TIMEOUT",
-        "2023-09:ECONNRESET",
+        "2023-09:UND_ERR_CONNECT_TIMEOUT",
         "2022-03:UND_ERR_CONNECT_TIMEOUT",
-        "2022-04:ETIMEDOUT",
-        "2022-11:deferred(cap)",
-        "2022-12:deferred(cap)",
-        "2021-07:deferred(cap)",
-        "2021-08:deferred(cap)",
-        "2021-09:deferred(cap)",
-        "2021-10:deferred(cap)",
-        "2021-11:deferred(cap)",
-        "2021-12:deferred(cap)"
+        "2022-11:UND_ERR_CONNECT_TIMEOUT",
+        "2022-12:UND_ERR_SOCKET",
+        "2021-07:UND_ERR_CONNECT_TIMEOUT",
+        "2021-11:UND_ERR_CONNECT_TIMEOUT"
       ]
     },
     "usatechidxusd": {
       "yearsComplete": [],
-      "monthsAdded": [],
-      "rows": 0,
-      "first": null,
-      "last": null,
-      "sample": null,
+      "monthsAdded": [
+        "2026-04"
+      ],
+      "rows": 28020,
+      "first": "2026-04-01T00:00:00Z",
+      "last": "2026-04-30T23:59:00Z",
+      "sample": {
+        "header": "dt,o,h,l,c,v",
+        "head": [
+          "2026-04-01T00:00:00Z,23856.716,23856.716,23840.172,23845.857,0.0076779997907578945",
+          "2026-04-01T00:01:00Z,23846.074,23848.346,23840.791,23845.059,0.0068419999442994595"
+        ],
+        "tail": "2026-04-30T23:59:00Z,27470.186,27470.186,27463.469,27465.761,0.004201999865472317"
+      },
       "errors": [
-        "2026-01:deferred(cap)",
-        "2026-02:deferred(cap)",
-        "2026-03:deferred(cap)",
-        "2026-04:deferred(cap)",
+        "2026-01:UND_ERR_CONNECT_TIMEOUT",
+        "2026-02:UND_ERR_CONNECT_TIMEOUT",
+        "2026-03:UND_ERR_CONNECT_TIMEOUT",
         "2026-05:deferred(cap)",
         "2026-06:deferred(cap)",
         "2026-07:deferred(cap)",
