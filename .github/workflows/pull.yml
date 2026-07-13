@@ -25,6 +25,7 @@ jobs:
       - name: Pull data
         run: node pull.js
       - name: Commit data
+        if: always()
         run: |
           git config user.name "qootsi-bot"
           git config user.email "bot@users.noreply.github.com"
