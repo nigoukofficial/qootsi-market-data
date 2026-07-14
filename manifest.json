@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-13T14:51:07.834Z",
+  "generatedAt": "2026-07-14T02:08:45.191Z",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-07-13T14:51:07.834Z"
+    "to": "2026-07-14T02:08:45.191Z"
   },
   "timeframe": "m1",
   "volumes": true,
   "node": "v20.20.2",
   "batchSize": 6,
-  "maxMonthsPerRun": 10,
+  "maxMonthsPerRun": 6,
   "instruments": {
     "xauusd": {
       "yearsComplete": [
@@ -17,14 +17,21 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
-      "rows": 1778710,
+      "monthsAdded": [
+        "2026-07"
+      ],
+      "rows": 1780330,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-07-10T20:59:00Z",
-      "sample": null,
-      "errors": [
-        "2026-07:UND_ERR_SOCKET"
-      ]
+      "last": "2026-07-14T01:59:00Z",
+      "sample": {
+        "header": "dt,o,h,l,c,v",
+        "head": [
+          "2026-07-01T00:00:00Z,4005.755,4007.525,4005.385,4007.465,0.022199999541044235",
+          "2026-07-01T00:01:00Z,4007.495,4007.495,4005.915,4006.165,0.016349999234080315"
+        ],
+        "tail": "2026-07-14T01:59:00Z,4010.745,4011.995,4009.835,4010.535,0.0521"
+      },
+      "errors": []
     },
     "usa30idxusd": {
       "yearsComplete": [
@@ -48,105 +55,98 @@
         2024,
         2023
       ],
-      "monthsAdded": [],
-      "rows": 1545980,
+      "monthsAdded": [
+        "2026-01"
+      ],
+      "rows": 1573818,
       "first": "2021-07-01T00:00:00Z",
       "last": "2026-07-13T08:59:00Z",
-      "sample": null,
+      "sample": {
+        "header": "dt,o,h,l,c,v",
+        "head": [
+          "2026-01-01T23:00:00Z,25284.236,25287.322,25273.347,25282.8,0.004017999861389399",
+          "2026-01-01T23:01:00Z,25282.638,25284.986,25263.608,25267.072,0.0029700000304728746"
+        ],
+        "tail": "2026-01-30T21:14:00Z,25534.742,25537.896,25530.033,25531.893,0.006556000094860792"
+      },
       "errors": [
-        "2026-01:UND_ERR_SOCKET",
         "2026-07:UND_ERR_CONNECT_TIMEOUT",
         "2022-08:UND_ERR_CONNECT_TIMEOUT",
-        "2022-10:UND_ERR_SOCKET",
-        "2022-11:UND_ERR_CONNECT_TIMEOUT",
+        "2022-10:UND_ERR_CONNECT_TIMEOUT",
+        "2022-11:UND_ERR_SOCKET",
         "2021-10:UND_ERR_SOCKET",
-        "2021-12:UND_ERR_CONNECT_TIMEOUT"
+        "2021-12:UND_ERR_SOCKET"
       ]
     },
     "eurusd": {
-      "yearsComplete": [],
-      "monthsAdded": [
-        "2026-07",
-        "2024-12",
-        "2022-02",
-        "2022-10"
+      "yearsComplete": [
+        2024
       ],
-      "rows": 1126788,
+      "monthsAdded": [
+        "2024-11",
+        "2023-01",
+        "2023-05",
+        "2023-08"
+      ],
+      "rows": 1254230,
       "first": "2021-07-01T00:00:00Z",
       "last": "2026-07-13T13:59:00Z",
       "sample": {
         "header": "dt,o,h,l,c,v",
         "head": [
-          "2026-07-01T00:00:00Z,1.14128,1.1413,1.14118,1.1412,285.0299987792969",
-          "2026-07-01T00:01:00Z,1.14118,1.14134,1.14118,1.14132,86.8499984741211"
+          "2024-11-01T00:00:00Z,1.08838,1.08843,1.08827,1.08834,172.1999969482422",
+          "2024-11-01T00:01:00Z,1.08835,1.0884,1.08832,1.0884,76.12999725341797"
         ],
-        "tail": "2026-07-13T13:59:00Z,1.14151,1.14163,1.14143,1.14145,118.35"
+        "tail": "2024-11-29T21:59:00Z,1.05756,1.05756,1.05748,1.05748,27"
       },
       "errors": [
-        "2026-02:UND_ERR_CONNECT_TIMEOUT",
+        "2026-02:UND_ERR_SOCKET",
+        "2026-07:UND_ERR_CONNECT_TIMEOUT",
         "2025-02:UND_ERR_CONNECT_TIMEOUT",
-        "2025-03:UND_ERR_CONNECT_TIMEOUT",
+        "2025-03:UND_ERR_SOCKET",
         "2024-02:UND_ERR_CONNECT_TIMEOUT",
-        "2024-11:UND_ERR_CONNECT_TIMEOUT",
-        "2023-01:UND_ERR_CONNECT_TIMEOUT",
-        "2023-05:UND_ERR_SOCKET",
-        "2023-08:UND_ERR_SOCKET",
-        "2023-09:UND_ERR_SOCKET",
-        "2023-11:UND_ERR_SOCKET",
-        "2023-12:UND_ERR_SOCKET",
-        "2022-03:UND_ERR_CONNECT_TIMEOUT",
-        "2022-04:UND_ERR_CONNECT_TIMEOUT",
-        "2022-05:UND_ERR_CONNECT_TIMEOUT",
-        "2022-07:UND_ERR_SOCKET",
-        "2022-08:UND_ERR_CONNECT_TIMEOUT",
-        "2022-09:UND_ERR_CONNECT_TIMEOUT",
-        "2022-11:UND_ERR_CONNECT_TIMEOUT",
-        "2022-12:UND_ERR_CONNECT_TIMEOUT",
-        "2021-08:UND_ERR_CONNECT_TIMEOUT",
-        "2021-09:UND_ERR_SOCKET",
-        "2021-10:UND_ERR_CONNECT_TIMEOUT",
-        "2021-11:UND_ERR_CONNECT_TIMEOUT",
-        "2021-12:UND_ERR_SOCKET"
+        "2023-09:deferred(cap)",
+        "2023-11:deferred(cap)",
+        "2023-12:deferred(cap)",
+        "2022-03:deferred(cap)",
+        "2022-04:deferred(cap)",
+        "2022-05:deferred(cap)",
+        "2022-07:deferred(cap)",
+        "2022-08:deferred(cap)",
+        "2022-09:deferred(cap)",
+        "2022-11:deferred(cap)",
+        "2022-12:deferred(cap)",
+        "2021-08:deferred(cap)",
+        "2021-09:deferred(cap)",
+        "2021-10:deferred(cap)",
+        "2021-11:deferred(cap)",
+        "2021-12:deferred(cap)"
       ]
     },
     "usa500idxusd": {
       "yearsComplete": [],
-      "monthsAdded": [
-        "2026-04",
-        "2025-03",
-        "2025-06",
-        "2025-07",
-        "2024-02",
-        "2024-03"
-      ],
+      "monthsAdded": [],
       "rows": 166253,
       "first": "2024-02-01T00:00:00Z",
       "last": "2026-04-30T23:59:00Z",
-      "sample": {
-        "header": "dt,o,h,l,c,v",
-        "head": [
-          "2026-04-01T00:00:00Z,6546.151,6546.545,6542.739,6544.054,0.147599995136261",
-          "2026-04-01T00:01:00Z,6543.851,6544.399,6542.645,6543.751,0.08910000324249268"
-        ],
-        "tail": "2026-04-30T23:59:00Z,7225.442,7225.442,7224.436,7224.954,0.05310000106692314"
-      },
+      "sample": null,
       "errors": [
-        "2026-01:ETIMEDOUT",
-        "2026-02:UND_ERR_CONNECT_TIMEOUT",
-        "2026-03:UND_ERR_SOCKET",
-        "2026-05:UND_ERR_CONNECT_TIMEOUT",
-        "2026-06:UND_ERR_SOCKET",
-        "2026-07:UND_ERR_SOCKET",
-        "2025-01:UND_ERR_CONNECT_TIMEOUT",
-        "2025-02:UND_ERR_CONNECT_TIMEOUT",
-        "2025-04:UND_ERR_CONNECT_TIMEOUT",
-        "2025-05:UND_ERR_SOCKET",
-        "2025-08:UND_ERR_CONNECT_TIMEOUT",
-        "2025-09:UND_ERR_CONNECT_TIMEOUT",
-        "2025-10:UND_ERR_CONNECT_TIMEOUT",
-        "2025-11:UND_ERR_CONNECT_TIMEOUT",
-        "2025-12:UND_ERR_CONNECT_TIMEOUT",
-        "2024-01:UND_ERR_CONNECT_TIMEOUT",
+        "2026-01:deferred(cap)",
+        "2026-02:deferred(cap)",
+        "2026-03:deferred(cap)",
+        "2026-05:deferred(cap)",
+        "2026-06:deferred(cap)",
+        "2026-07:deferred(cap)",
+        "2025-01:deferred(cap)",
+        "2025-02:deferred(cap)",
+        "2025-04:deferred(cap)",
+        "2025-05:deferred(cap)",
+        "2025-08:deferred(cap)",
+        "2025-09:deferred(cap)",
+        "2025-10:deferred(cap)",
+        "2025-11:deferred(cap)",
+        "2025-12:deferred(cap)",
+        "2024-01:deferred(cap)",
         "2024-04:deferred(cap)",
         "2024-05:deferred(cap)",
         "2024-06:deferred(cap)",
@@ -189,5 +189,5 @@
       ]
     }
   },
-  "monthsPulledThisRun": 10
+  "monthsPulledThisRun": 6
 }
