@@ -9,6 +9,9 @@
 //  - bounded: at most maxMonthsPerRun NEW months per run (gentle on Dukascopy)
 //  - instruments processed in job.json order (PRIORITY: gold first)
 //  - years newest-first
+//  - RESILIENT: corrupt gz -> treated empty (re-pull); per-instrument errors isolated;
+//    the job NEVER exits non-zero on partial/throttle failures (avoids red CI emails);
+//    partial progress is committed by the workflow (Commit step: if: always()).
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
@@ -35,7 +38,9 @@ const header = vol ? 'dt,o,h,l,c,v' : 'dt,o,h,l,c';
 function readExisting(file) {
   const byMonthCount = {}; const rowsByDt = {};
   if (!fs.existsSync(file)) return { byMonthCount, rowsByDt };
-  const txt = zlib.gunzipSync(fs.readFileSync(file)).toString('utf8');
+  let txt;
+  try { txt = zlib.gunzipSync(fs.readFileSync(file)).toString('utf8'); }
+  catch (e) { console.warn('corrupt gz, re-pulling as empty: ' + file + ' (' + ((e && e.message) || e) + ')'); return { byMonthCount, rowsByDt }; }
   for (const line of txt.split('\n')) {
     if (!line || line[0] === 'd') continue;        // skip header/empty
     const dt = line.slice(0, line.indexOf(','));
@@ -74,6 +79,7 @@ async function pullChunk(inst, from, to) {
   for (const inst of job.instruments) {
     const m = { yearsComplete: [], monthsAdded: [], rows: 0, first: null, last: null, sample: null, errors: [] };
     manifest.instruments[inst] = m;
+    try {
     const dir = path.join(outRoot, inst);
     fs.mkdirSync(dir, { recursive: true });
     for (let y = toD.getUTCFullYear(); y >= fromD.getUTCFullYear(); y--) {
@@ -93,7 +99,7 @@ async function pullChunk(inst, from, to) {
         catch (e) { m.errors.push(key + ':' + e.message); continue; }
         for (const r of rows) { const line = iso(r[0]) + ',' + r.slice(1).join(','); rowsByDt[line.slice(0, line.indexOf(','))] = line; }
         monthsPulled++; addedThisYear++; m.monthsAdded.push(key);
-        if (!m.sample) { const ex = rows[0]; m.sample = { header: header, head: [iso(rows[0][0]) + ',' + rows[0].slice(1).join(','), iso(rows[1][0]) + ',' + rows[1].slice(1).join(',')], tail: iso(rows[rows.length - 1][0]) + ',' + rows[rows.length - 1].slice(1).join(',') }; }
+        if (!m.sample) { m.sample = { header: header, head: [iso(rows[0][0]) + ',' + rows[0].slice(1).join(','), iso(rows[1][0]) + ',' + rows[1].slice(1).join(',')], tail: iso(rows[rows.length - 1][0]) + ',' + rows[rows.length - 1].slice(1).join(',') }; }
       }
       const dts = Object.keys(rowsByDt).sort();
       if (dts.length === 0) continue;
@@ -109,8 +115,13 @@ async function pullChunk(inst, from, to) {
       if (!m.first || dts[0] < m.first) m.first = dts[0];
       if (!m.last || dts[dts.length - 1] > m.last) m.last = dts[dts.length - 1];
     }
+    } catch (e) { m.errors.push('instrument-fatal:' + ((e && e.message) || String(e))); console.error('instrument error', inst, e); }
   }
   manifest.monthsPulledThisRun = monthsPulled;
   fs.writeFileSync('manifest.json', JSON.stringify(manifest, null, 2));
   console.log('DONE (' + monthsPulled + ' months pulled)');
-})().catch((e) => { console.error(e); process.exit(1); });
+})().catch((e) => {
+  console.error('run error (non-fatal, partial progress kept):', e);
+  try { if (!fs.existsSync('manifest.json')) { fs.writeFileSync('manifest.json', JSON.stringify({ generatedAt: new Date().toISOString(), fatal: String((e && e.message) || e) }, null, 2)); } } catch (_) {}
+  process.exit(0);
+});
