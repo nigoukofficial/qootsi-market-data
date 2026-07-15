@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-15T16:38:36.268Z",
+  "generatedAt": "2026-07-15T19:22:30.551Z",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-07-15T16:38:36.268Z"
+    "to": "2026-07-15T19:22:30.551Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -23,7 +23,7 @@
       "last": "2026-07-15T07:59:00Z",
       "sample": null,
       "errors": [
-        "2026-07:UND_ERR_SOCKET"
+        "2026-07:UND_ERR_CONNECT_TIMEOUT"
       ]
     },
     "usa30idxusd": {
@@ -55,7 +55,7 @@
       "last": "2026-07-14T20:14:00Z",
       "sample": null,
       "errors": [
-        "2026-07:UND_ERR_SOCKET"
+        "2026-07:ECONNRESET"
       ]
     },
     "eurusd": {
@@ -71,45 +71,42 @@
       "last": "2026-07-15T12:59:00Z",
       "sample": null,
       "errors": [
-        "2026-07:UND_ERR_SOCKET"
+        "2026-07:UND_ERR_CONNECT_TIMEOUT"
       ]
     },
     "usa500idxusd": {
       "yearsComplete": [
         2025,
-        2024
+        2024,
+        2023,
+        2022
       ],
       "monthsAdded": [
-        "2023-02",
-        "2022-08",
-        "2022-09",
-        "2022-10",
-        "2021-07"
+        "2023-10",
+        "2022-12",
+        "2021-08",
+        "2021-09"
       ],
-      "rows": 1446753,
+      "rows": 1559889,
       "first": "2021-07-01T00:00:00Z",
       "last": "2026-07-15T12:59:00Z",
       "sample": {
         "header": "dt,o,h,l,c,v",
         "head": [
-          "2023-02-01T00:00:00Z,4066.611,4067.333,4066.343,4066.852,0.015250000171363354",
-          "2023-02-01T00:01:00Z,4066.728,4067.108,4066.593,4066.966,0.018300000578165054"
+          "2023-10-01T22:00:00Z,4313.246,4316.126,4307.731,4315.797,0.11406999826431274",
+          "2023-10-01T22:01:00Z,4315.367,4316.626,4312.499,4312.499,0.08487000316381454"
         ],
-        "tail": "2023-02-28T23:59:00Z,3957.357,3958.167,3957.123,3957.866,0.012199999764561653"
+        "tail": "2023-10-31T23:59:00Z,4182.891,4182.897,4182.641,4182.707,0.006099999882280827"
       },
       "errors": [
-        "2026-07:UND_ERR_CONNECT_TIMEOUT",
-        "2024-12:UND_ERR_SOCKET",
-        "2023-01:UND_ERR_SOCKET",
-        "2023-10:UND_ERR_CONNECT_TIMEOUT",
-        "2022-02:UND_ERR_CONNECT_TIMEOUT",
-        "2022-12:UND_ERR_SOCKET",
-        "2021-08:ETIMEDOUT",
-        "2021-09:UND_ERR_CONNECT_TIMEOUT",
+        "2026-07:UND_ERR_SOCKET",
+        "2024-12:UND_ERR_CONNECT_TIMEOUT",
+        "2023-01:UND_ERR_CONNECT_TIMEOUT",
+        "2022-02:UND_ERR_SOCKET",
         "2021-11:UND_ERR_CONNECT_TIMEOUT",
-        "2021-12:UND_ERR_CONNECT_TIMEOUT"
+        "2021-12:UND_ERR_SOCKET"
       ]
     }
   },
-  "monthsPulledThisRun": 5
+  "monthsPulledThisRun": 4
 }
