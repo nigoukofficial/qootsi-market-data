@@ -21,7 +21,12 @@ jobs:
         with:
           node-version: '20'
       - name: Install dukascopy-node
-        run: npm i dukascopy-node@latest
+        run: |
+          for i in 1 2 3; do
+            npm i dukascopy-node@latest && exit 0
+            echo "npm install failed (attempt $i), retrying..."; sleep $((i*10))
+          done
+          echo "::error::npm install failed after 3 attempts"; exit 1
       - name: Pull data
         run: node pull.js
       - name: Commit data
@@ -34,5 +39,12 @@ jobs:
             echo "no changes"
           else
             git commit -m "data: backfill $(date -u +%FT%TZ) [skip ci]"
-            git push
+            pushed=0
+            for i in 1 2 3 4 5; do
+              if git push; then pushed=1; break; fi
+              echo "push rejected (attempt $i), rebasing on remote main..."
+              git pull --rebase --autostash origin main || true
+              sleep $((RANDOM % 5 + 3))
+            done
+            if [ "$pushed" != "1" ]; then echo "::error::git push failed after 5 attempts"; exit 1; fi
           fi

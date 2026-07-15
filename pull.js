@@ -77,6 +77,7 @@ async function pullChunk(inst, from, to) {
   };
   let monthsPulled = 0;
   for (const inst of job.instruments) {
+    let instMonths = 0;   // per-instrument cap: late instruments (e.g. usa500) no longer starve the global budget
     const m = { yearsComplete: [], monthsAdded: [], rows: 0, first: null, last: null, sample: null, errors: [] };
     manifest.instruments[inst] = m;
     try {
@@ -93,12 +94,12 @@ async function pullChunk(inst, from, to) {
         const key = y + '-' + String(mo + 1).padStart(2, '0');
         const done = (byMonthCount[key] || 0) >= MIN_ROWS && key !== curYM;
         if (done) continue;
-        if (monthsPulled >= maxMonthsPerRun) { m.errors.push(key + ':deferred(cap)'); continue; }
+        if (instMonths >= maxMonthsPerRun) { m.errors.push(key + ':deferred(cap)'); continue; }
         let rows;
         try { rows = await pullChunk(inst, cFrom, cTo); }
         catch (e) { m.errors.push(key + ':' + e.message); continue; }
         for (const r of rows) { const line = iso(r[0]) + ',' + r.slice(1).join(','); rowsByDt[line.slice(0, line.indexOf(','))] = line; }
-        monthsPulled++; addedThisYear++; m.monthsAdded.push(key);
+        monthsPulled++; instMonths++; addedThisYear++; m.monthsAdded.push(key);
         if (!m.sample) { m.sample = { header: header, head: [iso(rows[0][0]) + ',' + rows[0].slice(1).join(','), iso(rows[1][0]) + ',' + rows[1].slice(1).join(',')], tail: iso(rows[rows.length - 1][0]) + ',' + rows[rows.length - 1].slice(1).join(',') }; }
       }
       const dts = Object.keys(rowsByDt).sort();
