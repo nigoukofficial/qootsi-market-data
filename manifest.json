@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-22T11:34:25.519Z",
+  "generatedAt": "2026-10-22T16:59:47.954Z",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-10-22T11:34:25.519Z"
+    "to": "2026-10-22T16:59:47.953Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -71,7 +71,7 @@
       "last": "2026-10-08T10:17:00Z",
       "sample": null,
       "errors": [
-        "2026-10:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/EUR-USD/BID/2026/10/3"
+        "2026-10:Headless browser could not acquire a WAF token for https://jetta.dukascopy.com/v1/candles/minute/EUR-USD/BID/2026/10/2 (last HTTP status: 429, WAF action: none)"
       ]
     },
     "usa500idxusd": {
