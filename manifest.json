@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-22T21:25:07.630Z",
+  "generatedAt": "2026-10-23T04:22:37.693Z",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-10-22T21:25:07.630Z"
+    "to": "2026-10-23T04:22:37.692Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -23,7 +23,7 @@
       "last": "2026-10-08T10:17:00Z",
       "sample": null,
       "errors": [
-        "2026-10:Headless browser could not acquire a WAF token for https://jetta.dukascopy.com/v1/candles/minute/XAU-USD/BID/2026/10/2 (last HTTP status: 429, WAF action: none)"
+        "2026-10:Headless browser could not acquire a WAF token for https://jetta.dukascopy.com/v1/candles/minute/XAU-USD/BID/2026/10/1 (last HTTP status: 429, WAF action: none)"
       ]
     },
     "usa30idxusd": {
@@ -39,7 +39,7 @@
       "last": "2026-10-07T23:59:00Z",
       "sample": null,
       "errors": [
-        "2026-10:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USA30.IDX-USD/BID/2026/10/3"
+        "2026-10:Headless browser could not acquire a WAF token for https://jetta.dukascopy.com/v1/candles/minute/USA30.IDX-USD/BID/2026/10/5 (last HTTP status: 429, WAF action: none)"
       ]
     },
     "usatechidxusd": {
@@ -87,7 +87,7 @@
       "last": "2026-10-08T00:52:00Z",
       "sample": null,
       "errors": [
-        "2026-10:Headless browser could not acquire a WAF token for https://jetta.dukascopy.com/v1/candles/minute/USA500.IDX-USD/BID/2026/10/3 (last HTTP status: 429, WAF action: none)"
+        "2026-10:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USA500.IDX-USD/BID/2026/10/3"
       ]
     }
   },
