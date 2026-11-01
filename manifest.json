@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-31T23:59:28.344Z",
+  "generatedAt": "2026-11-01T05:51:18.411Z",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-10-31T23:59:28.344Z"
+    "to": "2026-11-01T05:51:18.411Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -23,7 +23,7 @@
       "last": "2026-10-08T10:17:00Z",
       "sample": null,
       "errors": [
-        "2026-10:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/XAU-USD/BID/2026/10/3"
+        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/XAU-USD/BID?from=1793491200000"
       ]
     },
     "usa30idxusd": {
@@ -39,7 +39,7 @@
       "last": "2026-10-07T23:59:00Z",
       "sample": null,
       "errors": [
-        "2026-10:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USA30.IDX-USD/BID/2026/10/3"
+        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USA30.IDX-USD/BID?from=1793491200000"
       ]
     },
     "usatechidxusd": {
@@ -55,7 +55,7 @@
       "last": "2026-10-08T10:18:00Z",
       "sample": null,
       "errors": [
-        "2026-10:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USATECH.IDX-USD/BID/2026/10/3"
+        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USATECH.IDX-USD/BID?from=1793491200000"
       ]
     },
     "eurusd": {
@@ -71,7 +71,7 @@
       "last": "2026-10-08T10:17:00Z",
       "sample": null,
       "errors": [
-        "2026-10:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/EUR-USD/BID/2026/10/3"
+        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/EUR-USD/BID?from=1793491200000"
       ]
     },
     "usa500idxusd": {
@@ -87,7 +87,7 @@
       "last": "2026-10-08T00:52:00Z",
       "sample": null,
       "errors": [
-        "2026-10:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USA500.IDX-USD/BID/2026/10/3"
+        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USA500.IDX-USD/BID?from=1793491200000"
       ]
     }
   },
