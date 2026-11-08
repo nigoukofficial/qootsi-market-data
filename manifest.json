@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-08T00:19:58.885Z",
+  "generatedAt": "2026-11-08T10:05:57.136Z",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-11-08T00:19:58.885Z"
+    "to": "2026-11-08T10:05:57.136Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -75,7 +75,7 @@
       "last": "2026-11-06T21:59:00Z",
       "sample": null,
       "errors": [
-        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/EUR-USD/BID/2026/11/7"
+        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/EUR-USD/BID?from=1794096000000"
       ]
     },
     "usa500idxusd": {
