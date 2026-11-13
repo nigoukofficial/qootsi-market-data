@@ -1,14 +1,16 @@
 {
-  "generatedAt": "2026-11-13T19:29:08.696Z",
+  "generatedAt": "2026-11-13T20:53:38.496Z",
+  "puller": "v2 (day by day, Saturdays skipped, completeness by weekday count)",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-11-13T19:29:08.696Z"
+    "to": "2026-11-13T20:53:38.496Z"
   },
   "timeframe": "m1",
   "volumes": true,
   "node": "v20.20.2",
   "batchSize": 6,
   "maxMonthsPerRun": 12,
+  "minRowsPerWeekday": 1000,
   "instruments": {
     "xauusd": {
       "yearsComplete": [
@@ -18,14 +20,15 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
-      "rows": 1871917,
+      "monthsAdded": [
+        "2026-10:+22727",
+        "2026-11:+6836"
+      ],
+      "monthsThin": [],
+      "rows": 1901480,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-06T21:59:00Z",
-      "sample": null,
-      "errors": [
-        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/XAU-USD/BID/2026/11/7"
-      ]
+      "last": "2026-11-13T20:52:00Z",
+      "errors": []
     },
     "usa30idxusd": {
       "yearsComplete": [
@@ -35,14 +38,15 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
-      "rows": 1804440,
+      "monthsAdded": [
+        "2026-10:+22567",
+        "2026-11:+6650"
+      ],
+      "monthsThin": [],
+      "rows": 1833657,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-06T21:14:00Z",
-      "sample": null,
-      "errors": [
-        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USA30.IDX-USD/BID/2026/11/7"
-      ]
+      "last": "2026-11-13T20:51:00Z",
+      "errors": []
     },
     "usatechidxusd": {
       "yearsComplete": [
@@ -52,14 +56,15 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
-      "rows": 1809300,
+      "monthsAdded": [
+        "2026-10:+21954",
+        "2026-11:+6654"
+      ],
+      "monthsThin": [],
+      "rows": 1837908,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-06T21:14:00Z",
-      "sample": null,
-      "errors": [
-        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USATECH.IDX-USD/BID/2026/11/7"
-      ]
+      "last": "2026-11-13T20:51:00Z",
+      "errors": []
     },
     "eurusd": {
       "yearsComplete": [
@@ -69,14 +74,15 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
-      "rows": 1966027,
+      "monthsAdded": [
+        "2026-10:+23626",
+        "2026-11:+7108"
+      ],
+      "monthsThin": [],
+      "rows": 1996761,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-06T21:59:00Z",
-      "sample": null,
-      "errors": [
-        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/EUR-USD/BID/2026/11/7"
-      ]
+      "last": "2026-11-13T20:52:00Z",
+      "errors": []
     },
     "usa500idxusd": {
       "yearsComplete": [
@@ -86,15 +92,17 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
-      "rows": 1777026,
+      "monthsAdded": [
+        "2026-10:+22496",
+        "2026-11:+6654",
+        "2024-12:+5185"
+      ],
+      "monthsThin": [],
+      "rows": 1811361,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-06T21:14:00Z",
-      "sample": null,
-      "errors": [
-        "2026-11:Request returned an empty dataset for https://jetta.dukascopy.com/v1/candles/minute/USA500.IDX-USD/BID/2026/11/7"
-      ]
+      "last": "2026-11-13T20:53:00Z",
+      "errors": []
     }
   },
-  "monthsPulledThisRun": 0
+  "monthsPulledThisRun": 11
 }
