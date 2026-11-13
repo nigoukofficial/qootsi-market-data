@@ -23,7 +23,7 @@ jobs:
       - name: Install dukascopy-node
         run: |
           for i in 1 2 3; do
-            npm i dukascopy-node@latest && exit 0
+            npm i dukascopy-node@1.51.1 && exit 0   # pinned (v2, 2026-11-13): @latest changed behaviour under us
             echo "npm install failed (attempt $i), retrying..."; sleep $((i*10))
           done
           echo "::error::npm install failed after 3 attempts"; exit 1

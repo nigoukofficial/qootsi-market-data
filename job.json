@@ -4,5 +4,6 @@
   "from": "2021-07-01",
   "to": "now",
   "volumes": true,
-  "maxMonthsPerRun": 12
+  "maxMonthsPerRun": 12,
+  "minRowsPerWeekday": 1000
 }

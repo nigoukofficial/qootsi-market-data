@@ -6,6 +6,8 @@ GitHub Actions pulls OHLC + volume from Dukascopy (via [`dukascopy-node`](https:
 
 ## How it works
 
+> **v2 (2026-11-13):** months are pulled day by day (Saturdays skipped; an empty day is not a failure), a month is complete only at >= `minRowsPerWeekday` rows per weekday and a last bar on its last weekday, `dukascopy-node` is pinned, and the manifest changes only when data or errors change (no empty commits). See the header of `pull.js`.
+
 1. Edit **`job.json`** (what to pull). Committing it triggers the workflow.
 2. The workflow runs `pull.js`, writes `data/<instrument>/<instrument>-<tf>-<year>.csv.gz`, and commits the result back with `[skip ci]`.
 3. `manifest.json` summarizes row counts and date coverage per instrument.
