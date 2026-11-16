@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-14T10:01:23.625Z",
+  "generatedAt": "2026-11-16T00:53:54.168Z",
   "puller": "v2 (day by day, Saturdays skipped, completeness by weekday count)",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-11-14T10:01:23.624Z"
+    "to": "2026-11-16T00:53:54.168Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -20,11 +20,13 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+112"
+      ],
       "monthsThin": [],
-      "rows": 1901547,
+      "rows": 1901659,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-13T21:59:00Z",
+      "last": "2026-11-16T00:52:00Z",
       "errors": []
     },
     "usa30idxusd": {
@@ -35,11 +37,13 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+113"
+      ],
       "monthsThin": [],
-      "rows": 1833681,
+      "rows": 1833794,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-13T21:14:00Z",
+      "last": "2026-11-16T00:52:00Z",
       "errors": []
     },
     "usatechidxusd": {
@@ -50,11 +54,13 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+113"
+      ],
       "monthsThin": [],
-      "rows": 1837931,
+      "rows": 1838044,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-13T21:14:00Z",
+      "last": "2026-11-16T00:53:00Z",
       "errors": []
     },
     "eurusd": {
@@ -65,11 +71,13 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+171"
+      ],
       "monthsThin": [],
-      "rows": 1996828,
+      "rows": 1996999,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-13T21:59:00Z",
+      "last": "2026-11-16T00:53:00Z",
       "errors": []
     },
     "usa500idxusd": {
@@ -80,13 +88,15 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+114"
+      ],
       "monthsThin": [],
-      "rows": 1811382,
+      "rows": 1811496,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-13T21:14:00Z",
+      "last": "2026-11-16T00:53:00Z",
       "errors": []
     }
   },
-  "monthsPulledThisRun": 0
+  "monthsPulledThisRun": 5
 }
