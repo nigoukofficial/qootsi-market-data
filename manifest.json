@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-16T21:52:47.866Z",
+  "generatedAt": "2026-11-17T01:16:32.521Z",
   "puller": "v2 (day by day, Saturdays skipped, completeness by weekday count)",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-11-16T21:52:47.866Z"
+    "to": "2026-11-17T01:16:32.521Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -21,12 +21,12 @@
         2022
       ],
       "monthsAdded": [
-        "2026-11:+658"
+        "2026-11:+142"
       ],
       "monthsThin": [],
-      "rows": 1902918,
+      "rows": 1903060,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-16T21:51:00Z",
+      "last": "2026-11-17T01:14:00Z",
       "errors": []
     },
     "usa30idxusd": {
@@ -38,12 +38,12 @@
         2022
       ],
       "monthsAdded": [
-        "2026-11:+621"
+        "2026-11:+135"
       ],
       "monthsThin": [],
-      "rows": 1835016,
+      "rows": 1835151,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-16T21:14:00Z",
+      "last": "2026-11-17T01:15:00Z",
       "errors": []
     },
     "usatechidxusd": {
@@ -55,12 +55,12 @@
         2022
       ],
       "monthsAdded": [
-        "2026-11:+621"
+        "2026-11:+135"
       ],
       "monthsThin": [],
-      "rows": 1839265,
+      "rows": 1839400,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-16T21:14:00Z",
+      "last": "2026-11-17T01:15:00Z",
       "errors": []
     },
     "eurusd": {
@@ -72,12 +72,12 @@
         2022
       ],
       "monthsAdded": [
-        "2026-11:+659"
+        "2026-11:+201"
       ],
       "monthsThin": [],
-      "rows": 1998258,
+      "rows": 1998459,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-16T21:52:00Z",
+      "last": "2026-11-17T01:14:00Z",
       "errors": []
     },
     "usa500idxusd": {
@@ -89,14 +89,92 @@
         2022
       ],
       "monthsAdded": [
-        "2026-11:+621"
+        "2026-11:+135"
       ],
       "monthsThin": [],
-      "rows": 1812717,
+      "rows": 1812852,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-16T21:14:00Z",
+      "last": "2026-11-17T01:15:00Z",
       "errors": []
+    },
+    "lightcmdusd": {
+      "yearsComplete": [
+        2026
+      ],
+      "monthsAdded": [
+        "2026-01:+28417",
+        "2026-02:+27246",
+        "2026-03:+30466",
+        "2026-04:+28956",
+        "2026-05:+28660",
+        "2026-06:+30028",
+        "2026-07:+31286",
+        "2026-08:+29035",
+        "2026-09:+30177",
+        "2026-10:+30208",
+        "2026-11:+15311",
+        "2025-01:+29639"
+      ],
+      "monthsThin": [],
+      "rows": 339429,
+      "first": "2025-01-01T23:00:00Z",
+      "last": "2026-11-17T01:16:00Z",
+      "errors": [
+        "2025-02:deferred(cap)",
+        "2025-03:deferred(cap)",
+        "2025-04:deferred(cap)",
+        "2025-05:deferred(cap)",
+        "2025-06:deferred(cap)",
+        "2025-07:deferred(cap)",
+        "2025-08:deferred(cap)",
+        "2025-09:deferred(cap)",
+        "2025-10:deferred(cap)",
+        "2025-11:deferred(cap)",
+        "2025-12:deferred(cap)",
+        "2024-01:deferred(cap)",
+        "2024-02:deferred(cap)",
+        "2024-03:deferred(cap)",
+        "2024-04:deferred(cap)",
+        "2024-05:deferred(cap)",
+        "2024-06:deferred(cap)",
+        "2024-07:deferred(cap)",
+        "2024-08:deferred(cap)",
+        "2024-09:deferred(cap)",
+        "2024-10:deferred(cap)",
+        "2024-11:deferred(cap)",
+        "2024-12:deferred(cap)",
+        "2023-01:deferred(cap)",
+        "2023-02:deferred(cap)",
+        "2023-03:deferred(cap)",
+        "2023-04:deferred(cap)",
+        "2023-05:deferred(cap)",
+        "2023-06:deferred(cap)",
+        "2023-07:deferred(cap)",
+        "2023-08:deferred(cap)",
+        "2023-09:deferred(cap)",
+        "2023-10:deferred(cap)",
+        "2023-11:deferred(cap)",
+        "2023-12:deferred(cap)",
+        "2022-01:deferred(cap)",
+        "2022-02:deferred(cap)",
+        "2022-03:deferred(cap)",
+        "2022-04:deferred(cap)",
+        "2022-05:deferred(cap)",
+        "2022-06:deferred(cap)",
+        "2022-07:deferred(cap)",
+        "2022-08:deferred(cap)",
+        "2022-09:deferred(cap)",
+        "2022-10:deferred(cap)",
+        "2022-11:deferred(cap)",
+        "2022-12:deferred(cap)",
+        "2021-07:deferred(cap)",
+        "2021-08:deferred(cap)",
+        "2021-09:deferred(cap)",
+        "2021-10:deferred(cap)",
+        "2021-11:deferred(cap)",
+        "2021-12:deferred(cap)"
+      ]
     }
   },
-  "monthsPulledThisRun": 5
+  "monthsPulledThisRun": 17
 }
