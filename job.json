@@ -1,5 +1,12 @@
 {
-  "instruments": ["xauusd", "usa30idxusd", "usatechidxusd", "eurusd", "usa500idxusd"],
+  "instruments": [
+    "xauusd",
+    "usa30idxusd",
+    "usatechidxusd",
+    "eurusd",
+    "usa500idxusd",
+    "lightcmdusd"
+  ],
   "timeframe": "m1",
   "from": "2021-07-01",
   "to": "now",
