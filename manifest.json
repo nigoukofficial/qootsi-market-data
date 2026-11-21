@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-21T02:03:41.686Z",
+  "generatedAt": "2026-11-21T10:50:56.523Z",
   "puller": "v2 (day by day, Saturdays skipped, completeness by weekday count)",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-11-21T02:03:41.685Z"
+    "to": "2026-11-21T10:50:56.523Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -20,9 +20,7 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+128"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 1908442,
       "first": "2021-07-01T00:00:00Z",
@@ -37,9 +35,7 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+81"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 1840353,
       "first": "2021-07-01T00:00:00Z",
@@ -54,9 +50,7 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+81"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 1844601,
       "first": "2021-07-01T00:00:00Z",
@@ -71,9 +65,7 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+126"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 2004019,
       "first": "2021-07-01T00:00:00Z",
@@ -88,9 +80,7 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+81"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 1818055,
       "first": "2021-07-01T00:00:00Z",
@@ -105,9 +95,7 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+126"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 1888472,
       "first": "2021-07-01T00:00:00Z",
@@ -115,5 +103,5 @@
       "errors": []
     }
   },
-  "monthsPulledThisRun": 6
+  "monthsPulledThisRun": 0
 }
