@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-21T10:50:56.523Z",
+  "generatedAt": "2026-11-23T01:29:40.013Z",
   "puller": "v2 (day by day, Saturdays skipped, completeness by weekday count)",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-11-21T10:50:56.523Z"
+    "to": "2026-11-23T01:29:40.013Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -20,11 +20,13 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+148"
+      ],
       "monthsThin": [],
-      "rows": 1908442,
+      "rows": 1908590,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-20T21:59:00Z",
+      "last": "2026-11-23T01:28:00Z",
       "errors": []
     },
     "usa30idxusd": {
@@ -35,11 +37,13 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+149"
+      ],
       "monthsThin": [],
-      "rows": 1840353,
+      "rows": 1840502,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-20T21:14:00Z",
+      "last": "2026-11-23T01:28:00Z",
       "errors": []
     },
     "usatechidxusd": {
@@ -50,11 +54,13 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+148"
+      ],
       "monthsThin": [],
-      "rows": 1844601,
+      "rows": 1844749,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-20T21:14:00Z",
+      "last": "2026-11-23T01:28:00Z",
       "errors": []
     },
     "eurusd": {
@@ -65,11 +71,13 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+208"
+      ],
       "monthsThin": [],
-      "rows": 2004019,
+      "rows": 2004227,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-20T21:59:00Z",
+      "last": "2026-11-23T01:28:00Z",
       "errors": []
     },
     "usa500idxusd": {
@@ -80,11 +88,13 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+150"
+      ],
       "monthsThin": [],
-      "rows": 1818055,
+      "rows": 1818205,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-20T21:14:00Z",
+      "last": "2026-11-23T01:29:00Z",
       "errors": []
     },
     "lightcmdusd": {
@@ -95,13 +105,15 @@
         2023,
         2022
       ],
-      "monthsAdded": [],
+      "monthsAdded": [
+        "2026-11:+150"
+      ],
       "monthsThin": [],
-      "rows": 1888472,
+      "rows": 1888622,
       "first": "2021-07-01T00:00:00Z",
-      "last": "2026-11-20T21:59:00Z",
+      "last": "2026-11-23T01:29:00Z",
       "errors": []
     }
   },
-  "monthsPulledThisRun": 0
+  "monthsPulledThisRun": 6
 }
