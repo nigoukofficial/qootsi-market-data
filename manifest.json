@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-23T12:07:29.651Z",
+  "generatedAt": "2026-11-24T02:05:44.700Z",
   "puller": "v2 (day by day, Saturdays skipped, completeness by weekday count)",
   "resolved": {
     "from": "2021-07-01T00:00:00.000Z",
-    "to": "2026-11-23T12:07:29.650Z"
+    "to": "2026-11-24T02:05:44.700Z"
   },
   "timeframe": "m1",
   "volumes": true,
@@ -20,14 +20,14 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+637"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 1909227,
       "first": "2021-07-01T00:00:00Z",
       "last": "2026-11-23T12:05:00Z",
-      "errors": []
+      "errors": [
+        "2026-11:2026-11-23:Dukascopy refused access (HTTP 403) for https://jetta.dukascopy.com/v1/candles/minute/XAU-USD/BID/2026/11/23; WAF token recovery does not apply to a plain 403. Download stopped. Check that Dukascopy's historical data export page (https://www.dukascopy.com/swiss/english/marketwatch/historical/) works in a regular browser, and update dukascopy-node if a newer version is available."
+      ]
     },
     "usa30idxusd": {
       "yearsComplete": [
@@ -37,14 +37,14 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+638"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 1841140,
       "first": "2021-07-01T00:00:00Z",
       "last": "2026-11-23T12:06:00Z",
-      "errors": []
+      "errors": [
+        "2026-11:2026-11-23:Dukascopy refused access (HTTP 403) for https://jetta.dukascopy.com/v1/candles/minute/USA30.IDX-USD/BID/2026/11/23; WAF token recovery does not apply to a plain 403. Download stopped. Check that Dukascopy's historical data export page (https://www.dukascopy.com/swiss/english/marketwatch/historical/) works in a regular browser, and update dukascopy-node if a newer version is available."
+      ]
     },
     "usatechidxusd": {
       "yearsComplete": [
@@ -54,14 +54,14 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+637"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 1845386,
       "first": "2021-07-01T00:00:00Z",
       "last": "2026-11-23T12:05:00Z",
-      "errors": []
+      "errors": [
+        "2026-11:2026-11-23:Dukascopy refused access (HTTP 403) for https://jetta.dukascopy.com/v1/candles/minute/USATECH.IDX-USD/BID/2026/11/23; WAF token recovery does not apply to a plain 403. Download stopped. Check that Dukascopy's historical data export page (https://www.dukascopy.com/swiss/english/marketwatch/historical/) works in a regular browser, and update dukascopy-node if a newer version is available."
+      ]
     },
     "eurusd": {
       "yearsComplete": [
@@ -71,14 +71,14 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+637"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 2004864,
       "first": "2021-07-01T00:00:00Z",
       "last": "2026-11-23T12:05:00Z",
-      "errors": []
+      "errors": [
+        "2026-11:2026-11-23:Dukascopy refused access (HTTP 403) for https://jetta.dukascopy.com/v1/candles/minute/EUR-USD/BID/2026/11/23; WAF token recovery does not apply to a plain 403. Download stopped. Check that Dukascopy's historical data export page (https://www.dukascopy.com/swiss/english/marketwatch/historical/) works in a regular browser, and update dukascopy-node if a newer version is available."
+      ]
     },
     "usa500idxusd": {
       "yearsComplete": [
@@ -88,14 +88,14 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+637"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 1818842,
       "first": "2021-07-01T00:00:00Z",
       "last": "2026-11-23T12:06:00Z",
-      "errors": []
+      "errors": [
+        "2026-11:2026-11-23:Dukascopy refused access (HTTP 403) for https://jetta.dukascopy.com/v1/candles/minute/USA500.IDX-USD/BID/2026/11/23; WAF token recovery does not apply to a plain 403. Download stopped. Check that Dukascopy's historical data export page (https://www.dukascopy.com/swiss/english/marketwatch/historical/) works in a regular browser, and update dukascopy-node if a newer version is available."
+      ]
     },
     "lightcmdusd": {
       "yearsComplete": [
@@ -105,15 +105,15 @@
         2023,
         2022
       ],
-      "monthsAdded": [
-        "2026-11:+636"
-      ],
+      "monthsAdded": [],
       "monthsThin": [],
       "rows": 1889258,
       "first": "2021-07-01T00:00:00Z",
       "last": "2026-11-23T12:05:00Z",
-      "errors": []
+      "errors": [
+        "2026-11:2026-11-23:Dukascopy refused access (HTTP 403) for https://jetta.dukascopy.com/v1/candles/minute/LIGHT.CMD-USD/BID/2026/11/23; WAF token recovery does not apply to a plain 403. Download stopped. Check that Dukascopy's historical data export page (https://www.dukascopy.com/swiss/english/marketwatch/historical/) works in a regular browser, and update dukascopy-node if a newer version is available."
+      ]
     }
   },
-  "monthsPulledThisRun": 6
+  "monthsPulledThisRun": 0
 }
